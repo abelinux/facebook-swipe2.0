@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <title>Demo Menu</title>
+    </head>
+    <body>
+		<div id="menuprincipal">
+			<div id="wrapperMenu">
+				<div class="scroller">
+					<div id="contenidoMenu"></div>
+				</div>
+			</div>
+		</div>
+    	<div id="cuerpo">
+	        <div id="header"><a href="javascript:menu('menu');">
+            	<div class="btn" id="menu">MENU</div></a><img class="logo" src="img/logo.png" />
+            </div>
+			<div id="wrapper">
+				<div class="scroller">
+					<div id="contenidoCuerpo">
+                    	<div class="borde-h1 color1"></div><h1 id="test">Opcion 1</h1>
+Lorem ipsum ad his scripta blandit partiendo, eum fastidii accumsan euripidis in, eum liber hendrerit an. <br/>Qui ut wisi vocibus suscipiantur, quo dicit ridens inciderint id. Quo mundi lobortis reformidans eu, legimus senserit definiebas an eos. Eu sit tincidunt incorrupte definitionem, vis mutat affert percipit cu, eirmod consectetuer signiferumque eu per. In usu latine equidem dolores. <br/><br/>Quo no falli viris intellegam, ut fugit veritus placerat per. Ius id vidit volumus mandamus, vide veritus democritum te nec, ei eos debet libris consulatu. No mei ferri graeco dicunt, ad cum veri accommodare. Sed at malis omnesque delicata, usu et iusto zzril meliore. Dicunt maiorum eloquentiam cum cu, sit summo dolor essent te. <br/><br/>Ne quodsi nusquam legendos has, ea dicit voluptua eloquentiam pro, ad sit quas qualisque. Eos vocibus deserunt quaestio ei. Blandit incorrupte quaerendum in quo, nibh impedit id vis, vel no nullam semper audiam.
+<br/><br/>Lorem ipsum ad his scripta blandit partiendo, eum fastidii accumsan euripidis in, eum liber hendrerit an. <br/>Qui ut wisi vocibus suscipiantur, quo dicit ridens inciderint id. Quo mundi lobortis reformidans eu, legimus senserit definiebas an eos. Eu sit tincidunt incorrupte definitionem, vis mutat affert percipit cu, eirmod consectetuer signiferumque eu per. In usu latine equidem dolores. <br/><br/>Quo no falli viris intellegam, ut fugit veritus placerat per. Ius id vidit volumus mandamus, vide veritus democritum te nec, ei eos debet libris consulatu. No mei ferri graeco dicunt, ad cum veri accommodare. Sed at malis omnesque delicata, usu et iusto zzril meliore. Dicunt maiorum eloquentiam cum cu, sit summo dolor essent te. <br/><br/>Ne quodsi nusquam legendos has, ea dicit voluptua eloquentiam pro, ad sit quas qualisque. Eos vocibus deserunt quaestio ei. Blandit incorrupte quaerendum in quo, nibh impedit id vis, vel no nullam semper audiam.
+<br/><br/>Lorem ipsum ad his scripta blandit partiendo, eum fastidii accumsan euripidis in, eum liber hendrerit an. <br/>Qui ut wisi vocibus suscipiantur, quo dicit ridens inciderint id. Quo mundi lobortis reformidans eu, legimus senserit definiebas an eos. Eu sit tincidunt incorrupte definitionem, vis mutat affert percipit cu, eirmod consectetuer signiferumque eu per. In usu latine equidem dolores. <br/><br/>Quo no falli viris intellegam, ut fugit veritus placerat per. Ius id vidit volumus mandamus, vide veritus democritum te nec, ei eos debet libris consulatu. No mei ferri graeco dicunt, ad cum veri accommodare. Sed at malis omnesque delicata, usu et iusto zzril meliore. Dicunt maiorum eloquentiam cum cu, sit summo dolor essent te. <br/><br/>Ne quodsi nusquam legendos has, ea dicit voluptua eloquentiam pro, ad sit quas qualisque. Eos vocibus deserunt quaestio ei. Blandit incorrupte quaerendum in quo, nibh impedit id vis, vel no nullam semper audiam.
+					</div>
+				</div>
+			</div>
+		</div>
+        <script type="text/javascript" src="jquery-1.9.1.min.js"></script>
+        <script type="text/javascript" src="jquery.touchSwipe.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/fastclick.js"></script>
+        <script type="text/javascript" src="js/iscroll.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        <script type="text/javascript">
+            app.initialize();
+			
+			//style.innerHTML = '.cssClass { position:absolute; z-index:2; left:0; top:46px; width:100%; height: '+($("#cuerpo").height()-46)+'px; overflow:auto;}';
+			
+            $(function() {
+				var estado="inicio", distancia;			
+				
+				$("#menu").click(function(){$("#cuerpo").addClass('page transition');
+					if(estado=="contenido"){
+						//$("#cuerpo").attr('style','-webkit-transform: translate3d(0px, 0, 0);');
+						$("#cuerpo").attr('style','margin: 0;');
+						estado="menu";
+					}else{
+						distancia=$("#contenidoMenu").width();
+						//$("#cuerpo").attr('style','-webkit-transform: translate3d('+ distancia + 'px, 0, 0);');
+						$("#cuerpo").attr('style','margin: 0 0 	0px '+ distancia + 'px;');
+						estado="contenido";
+					}
+				});
+				
+                $("#cuerpo").swipe( {
+                    swipe:function(event, direction,distance) {
+                        //$(".test").text("You swiped " + direction );
+                    },
+                    swipeStatus:function(event, phase, direction, distance, duration, fingers) {
+                        if (phase=="move"){
+							if(estado=="contenido" && direction!="up" && direction!="right" && direction!="down"){
+								$("#cuerpo").removeClass('page transition');
+								if(distancia-distance>=0){
+									$("#cuerpo").attr('style','-webkit-transform: translate3d('+ (distancia-distance) +'px, 0, 0);');
+								}
+							}
+						}else if(phase=="end"){
+							if(estado=="contenido" && direction!="up" && direction!="right" && direction!="down"){
+								if(distance>100){
+									$("#cuerpo").attr('style','-webkit-transform: translate3d(0px, 0, 0);');
+									estado="";
+								}else{
+									distancia=$("#contenidoMenu").width();
+									$("#cuerpo").attr('style','-webkit-transform: translate3d('+ distancia + 'px, 0, 0);');
+								}
+							}
+						}
+                        if (phase=="cancel" && estado=="contenido"){
+							if(distance>100){
+								$("#cuerpo").attr('style','-webkit-transform: translate3d(0px, 0, 0);');
+								estado="";
+							}else{
+								$("#cuerpo").attr('style','-webkit-transform: translate3d('+ $("#contenidoMenu").width() + 'px, 0, 0);');						
+							}
+                        }
+                    },
+                    threshold:200,
+                    cancelThreshold:10
+                });
+            });
+        </script>
+    </body>
+</html>

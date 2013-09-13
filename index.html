@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <title>Demo Menu</title>
+    </head>
+    <body>
+		<div id="menuprincipal">
+			<div id="wrapperMenu">
+				<div class="scroller">
+					<div id="contenidoMenu"></div>
+				</div>
+			</div>
+		</div>
+    	<div id="cuerpo">
+	        <div id="header">
+            	<div id="title"> <a  href="javascript:menu('menu');"><div class="btn" id="menu">MENU</div></a><img class="logo" src="img/logo.png" />
+                </div>
+            	<div id="wrapper">
+                    <div class="scroller">
+                        <div id="contenidoCuerpo"></div>
+                    </div>
+				</div>
+            </div>
+			
+		</div>
+        <script type="text/javascript" src="jquery-1.9.1.min.js"></script>
+        <script type="text/javascript" src="jquery.touchSwipe.min.js"></script>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/fastclick.js"></script>
+        <script type="text/javascript" src="js/iscroll.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+        
+		<script type="text/javascript">
+		
+			//wrapper.className = 'cssClass';
+			
+            app.initialize();
+			$(function() {
+				var estado="inicio", distancia;			
+				$("#test").text($("#cuerpo").height());
+				$("#menu").click(function(){
+					$("#cuerpo").addClass('page transition');
+					if(estado=="contenido"){
+						//$("#cuerpo").attr('style','-webkit-transform: translate3d(0px, 0, 0);');
+						$("#cuerpo").attr('style','margin: 0;');
+						$("#wrapperMenu").attr('style','z-index: 3;');
+						estado="menu";
+					}else{
+						distancia=$("#contenidoMenu").width();
+						//$("#cuerpo").attr('style','-webkit-transform: translate3d('+ distancia + 'px, 0, 0);');
+						$("#cuerpo").attr('style','margin: 0 0 	0px '+ distancia + 'px;');
+						estado="contenido";
+					}
+				});
+				
+                $("#wrapper").swipe( {
+                    swipe:function(event, direction,distance) {
+                        //$(".test").text("You swiped " + direction );
+                    },
+                    swipeStatus:function(event, phase, direction, distance, duration, fingers) {
+                        if (phase=="move"){
+							if(estado=="contenido" && direction!="up" && direction!="right" && direction!="down"){
+								$("#cuerpo").removeClass('page transition');
+								if(distancia-distance>=0){
+									//$("#cuerpo").attr('style','-webkit-transform: translate3d('+ (distancia-distance) +'px, 0, 0);');
+									$("#cuerpo").attr('style','margin: 0 0 	0px '+ (distancia-distance) + 'px;');
+								}
+							}
+						}else if(phase=="end"){
+							if(estado=="contenido" && direction!="up" && direction!="right" && direction!="down"){
+								if(distance>100){
+									$("#cuerpo").attr('style','-webkit-transform: translate3d(0px, 0, 0);');
+									estado="";
+								}else{
+									distancia=$("#contenidoMenu").width();
+									$("#cuerpo").attr('style','-webkit-transform: translate3d('+ distancia + 'px, 0, 0);');
+								}
+							}
+						}
+                        if (phase=="cancel" && estado=="contenido"){
+							if(distance>100){
+								$("#cuerpo").attr('style','-webkit-transform: translate3d(0px, 0, 0);');
+								estado="";
+							}else{
+								$("#cuerpo").attr('style','-webkit-transform: translate3d('+ $("#contenidoMenu").width() + 'px, 0, 0);');						
+							}
+                        }
+                    },
+                    threshold:200,
+                    cancelThreshold:10
+                });
+            });
+           
+        </script>
+    </body>
+</html>
