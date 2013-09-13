@@ -2,8 +2,10 @@
 <html>
     <head>
         <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+        <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8"/>
         <meta charset="utf-8">
         <link rel="stylesheet" type="text/css" href="css/index.css" />
+        
         <title>Demo Menu</title>
     </head>
     <body>
@@ -16,7 +18,11 @@
 		</div>
     	<div id="cuerpo">
 	        <div id="header">
-            	<div id="title"> <a  href="javascript:menu('menu');"><div class="btn" id="menu">MENU</div></a><img class="logo" src="img/logo.png" />
+            	<div id="title">
+                    <a href="javascript:menu('menu');">
+                    	<div class="btn" id="menu">MENU</div>
+                    </a>
+                    <img class="logo" src="img/logo.png" />
                 </div>
             	<div id="wrapper">
                     <div class="scroller">
@@ -24,7 +30,6 @@
                     </div>
 				</div>
             </div>
-			
 		</div>
         <script type="text/javascript" src="jquery-1.9.1.min.js"></script>
         <script type="text/javascript" src="jquery.touchSwipe.min.js"></script>
@@ -34,9 +39,6 @@
         <script type="text/javascript" src="js/index.js"></script>
         
 		<script type="text/javascript">
-		
-			//wrapper.className = 'cssClass';
-			
             app.initialize();
 			$(function() {
 				var estado="inicio", distancia;			
@@ -69,6 +71,10 @@
 									$("#cuerpo").attr('style','margin: 0 0 	0px '+ (distancia-distance) + 'px;');
 								}
 							}
+							// Descomentar para que funcione al a derecha desde el inicio
+							/*else if (direction=="right" && estado!="contenido"){
+								$("#cuerpo").attr('style','margin: 0 0 	0px '+ distance + 'px;');
+							}*/
 						}else if(phase=="end"){
 							if(estado=="contenido" && direction!="up" && direction!="right" && direction!="down"){
 								if(distance>100){
@@ -79,14 +85,28 @@
 									$("#cuerpo").attr('style','-webkit-transform: translate3d('+ distancia + 'px, 0, 0);');
 								}
 							}
+							// Descomentar para que funcione al a derecha desde el inicio
+							/*else{
+								distancia=$("#contenidoMenu").width();
+								$("#cuerpo").attr('style','-webkit-transform: translate3d('+ distancia + 'px, 0, 0);');
+								estado="contenido";
+							}*/
 						}
-                        if (phase=="cancel" && estado=="contenido"){
-							if(distance>100){
+                        if (phase=="cancel"){
+							if(estado=="contenido"){
+								if(distance>100){
+									$("#cuerpo").attr('style','-webkit-transform: translate3d(0px, 0, 0);');
+									estado="";
+								}else{
+									$("#cuerpo").attr('style','-webkit-transform: translate3d('+ $("#contenidoMenu").width() + 'px, 0, 0);');						
+								}
+							}
+							// Descomentar para que funcione al a derecha desde el inicio
+							/*
+							else{
 								$("#cuerpo").attr('style','-webkit-transform: translate3d(0px, 0, 0);');
 								estado="";
-							}else{
-								$("#cuerpo").attr('style','-webkit-transform: translate3d('+ $("#contenidoMenu").width() + 'px, 0, 0);');						
-							}
+							}*/
                         }
                     },
                     threshold:200,

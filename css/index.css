@@ -23,20 +23,17 @@ a {
 /*Inicio estilos de la cabecera*/
 
 #wrapper {
-	background:#FFF !important;;
-	height: 100% !important;
+	background:#FFF;
+	height: 100%;
 	position:absolute; width:100%;
 }
 #header {
 	position:absolute; z-index:3;
 	top:0; left:0;
 	width:100%;
-	
 	background: #FFFFFF;
-	
 	font-size:14px;
-	bottom: 48px !important;
-	
+	bottom: 48px;
 }
 
 #title{

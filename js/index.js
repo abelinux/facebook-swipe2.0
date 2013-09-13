@@ -44,7 +44,7 @@ var app = {
     },
 
     bindEvents: function() {
-        document.addEventListener('deviceready', this.onDeviceReady, false);
+       // document.addEventListener('deviceready', this.onDeviceReady, false);
     },
 
     onDeviceReady: function() {
@@ -83,7 +83,7 @@ function menu(opcion){
 			estado="menuprincipal";
 		}else if(estado=="menuprincipal"){
 			//cuerpo.className = 'page transition center';
-			estado="cuerpo";	
+			estado="cuerpo";
 		}
 	// Si pulsamos un bot—n del menu principal entramos en el else
 	}else{
