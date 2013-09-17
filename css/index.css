@@ -97,6 +97,7 @@ a {
 	position:absolute;
 	width: 80%;
 	height: 100%;
+	z-index:-1;
 }
 
 #wrapperMenu {
@@ -203,7 +204,7 @@ a {
 }
 /*Fin estilos de las capas internas de los iscroll, tanto cuerpo como menu*/
 
-/*Inicio c—digo de posici—n y transici—n de las p‡ginas*/
+/*Inicio cï¿½digo de posiciï¿½n y transiciï¿½n de las pï¿½ginas*/
 .page {
     position: absolute;
     top: 0;
@@ -228,4 +229,4 @@ a {
     transition-duration: .25s;
 }
 
-/*Fin c—digo de posici—n y transici—n de las p‡ginas*/
+/*Fin cï¿½digo de posiciï¿½n y transiciï¿½n de las pï¿½ginas*/
